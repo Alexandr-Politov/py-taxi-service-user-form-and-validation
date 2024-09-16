@@ -121,6 +121,11 @@ class LicenseUpdateView(LoginRequiredMixin, generic.UpdateView):
     form_class = DriverLicenseUpdateForm
     template_name = "taxi/license_form.html"
 
+    def get_success_url(self) -> str:
+        return reverse_lazy(
+            "taxi:driver-detail",
+            kwargs={"pk": self.object.pk}
+        )
 
 class DriverDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Driver
