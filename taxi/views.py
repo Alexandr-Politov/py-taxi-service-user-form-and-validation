@@ -127,6 +127,7 @@ class LicenseUpdateView(LoginRequiredMixin, generic.UpdateView):
             kwargs={"pk": self.object.pk}
         )
 
+
 class DriverDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Driver
     success_url = reverse_lazy("taxi:driver-list")
