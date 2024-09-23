@@ -65,8 +65,10 @@ class CarDetailView(LoginRequiredMixin, generic.DetailView):
     model = Car
 
     def post(self, request, *args, **kwargs):
-        car = self.get_object()  # Get the car object from the view context
-        action = request.POST.get("action")  # Get the action from the form ('Add' or 'Delete')
+        # Get the car object from the view context
+        car = self.get_object()
+        # Get the action from the form ('Add' or 'Delete')
+        action = request.POST.get("action")
 
         if action == "Add":
             car.drivers.add(request.user)
