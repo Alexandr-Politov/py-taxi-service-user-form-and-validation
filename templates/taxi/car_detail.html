@@ -23,20 +23,17 @@
     {% endfor %}
   </ul>
 
-  {% if user in car.drivers.all %}
-    <form method="post" action="{% url 'taxi:car-detail' car.id %}">
-      {% csrf_token %}
-      <!-- Hidden field to specify the action -->
+  
+  <form method="post" action="{% url 'taxi:car-detail' car.id %}">
+    {% csrf_token %}
+    {% if user in car.drivers.all %}
       <input type="hidden" name="action" value="Delete">
       <button type="submit">Remove me from driver's list</button>
-    </form>
-  {% else %}
-    <form method="post" action="{% url 'taxi:car-detail' car.id %}">
-      {% csrf_token %}
-      <!-- Hidden field to specify the action -->
+    {% else %}
       <input type="hidden" name="action" value="Add">
-      <button type="submit">Add me as driver</button>
-    </form>
-  {% endif %}
+      <button type="submit">Add me to driver's list</button>
+    {% endif %}
+    
+  </form>  
 
 {% endblock %}
